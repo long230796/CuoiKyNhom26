@@ -1,7 +1,9 @@
-package com.nhom26.cuoikynhom26;
+package com.nhom26.cuoikynhom26.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.nhom26.cuoikynhom26.R;
 
 public class MainActivity extends AppCompatActivity {
 
