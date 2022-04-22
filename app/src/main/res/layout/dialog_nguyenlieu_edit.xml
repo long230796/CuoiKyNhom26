@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:text="Thêm nguyên liệu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textAlignment="center"
+        android:background="@drawable/textview_border"
+        android:textSize="24sp"
+        android:paddingBottom="7dp"
+        android:paddingTop="7dp"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/textview_border">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:text="Mã NL"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtMaPhongUpdateView"
+                android:layout_weight="1"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:text="Tên NL"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:textSize="14sp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/edtLoaiPhong"
+                android:layout_weight="1"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:text="Đơn vị"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5"
+                android:textSize="14sp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/edtTang"
+                android:layout_weight="1"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            style="@style/footerDoubleButton">
+
+            <Button
+                android:id="@+id/btnCapNhatPhong"
+                android:text="Lưu"
+                android:background="@drawable/custom_button"
+                style="@style/button_default" />
+
+            <Button
+                android:text="Hủy"
+                android:id="@+id/btnHuyCapNhatPhong"
+                android:background="@drawable/custom_button"
+                style="@style/button_default" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
