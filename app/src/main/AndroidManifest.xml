@@ -8,17 +8,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MainActivity"></activity>
+        <activity android:name=".Activities.MainActivity" />
         <activity
             android:name=".Activities.HomeActivity"
             android:label=" Home">
+
+        </activity>
+        <activity android:name=".Activities.NguyenLieuActivity" />
+        <activity android:name=".Activities.AdminHomeActivity" android:label="Trang Chủ Admin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.NguyenLieuActivity"></activity>
     </application>
 
 </manifest>
