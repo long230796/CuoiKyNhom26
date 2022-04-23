@@ -49,7 +49,7 @@ public class LoaiActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedLoai = loaiAdapter.getItem(i);
-//                hienThiDialogChiTietLoai();
+                hienThiDialogChiTietLoai();
             }
         });
 
@@ -60,6 +60,19 @@ public class LoaiActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void hienThiDialogChiTietLoai() {
+        Dialog dialogChitietLoai = new Dialog(LoaiActivity.this);
+        dialogChitietLoai.setContentView(R.layout.dialog_loai_detail);
+
+        TextView txtMaLoai = dialogChitietLoai.findViewById(R.id.txtMaLoai);
+        TextView txtTenLoai = dialogChitietLoai.findViewById(R.id.txtTenLoai);
+
+        txtMaLoai.setText(selectedLoai.getMaloai());
+        txtTenLoai.setText(selectedLoai.getTenloai());
+
+        dialogChitietLoai.show();
     }
 
     private void hienThiDialogThemLoai() {
