@@ -195,11 +195,49 @@ public class LoaiActivity extends AppCompatActivity {
                 break;
 
             case R.id.mnuXoa:
-//                hienThiDialogXoaPhong();
+                hienThiDialogXoaLoai();
                 break;
 
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void hienThiDialogXoaLoai() {
+
+        final Dialog dialogXoa = new Dialog(LoaiActivity.this);
+        dialogXoa.setContentView(R.layout.dialog_delete);
+
+        Button btnCo = dialogXoa.findViewById(R.id.btnCo);
+        Button btnKhong = dialogXoa.findViewById(R.id.btnKhong);
+
+        btnCo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                delete(dialogXoa);
+            }
+        });
+
+        btnKhong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogXoa.dismiss();
+            }
+        });
+
+        dialogXoa.show();
+
+
+    }
+
+    private void delete(Dialog dialogXoa) {
+        int kq = AdminHomeActivity.database.delete("LOAIMONAN", "MALOAI=?", new String[]{selectedLoai.getMaloai()});
+        if (kq > 0) {
+            Toast.makeText(LoaiActivity.this, "Xóa thành công", Toast.LENGTH_SHORT).show();
+            dialogXoa.dismiss();
+            getLoaiFromDB();
+        } else {
+            Toast.makeText(LoaiActivity.this, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void hienThiDialogEditLoai() {
