@@ -58,6 +58,14 @@ public class NguyenLieuActivity extends AppCompatActivity {
             }
         });
 
+        lvNguyenLieu.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedNguyenLieu = nguyenLieuAdapter.getItem(i);
+                return false;
+            }
+        });
+
 
 
     }
@@ -189,16 +197,64 @@ public class NguyenLieuActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuSua:
-//                hienThiManHinhEditPhong();
-                Toast.makeText(this, "Sửa", Toast.LENGTH_SHORT).show();
+                hienThiManHinhEditPhong();
                 break;
 
             case R.id.mnuXoa:
 //                hienThiManHinhXoaPhong();
-                Toast.makeText(this, "Xóa", Toast.LENGTH_SHORT).show();
                 break;
 
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void hienThiManHinhEditPhong() {
+        final Dialog dialogSuaNL = new Dialog(NguyenLieuActivity.this);
+        dialogSuaNL.setContentView(R.layout.dialog_nguyenlieu_edit);
+
+        final TextView txtMaNL = dialogSuaNL.findViewById(R.id.txtMaNL);
+        final EditText edtTenNL = dialogSuaNL.findViewById(R.id.edtTenNL);
+        final EditText edtDonVi = dialogSuaNL.findViewById(R.id.edtDonVi);
+        Button btnLuu = dialogSuaNL.findViewById(R.id.btnLuu);
+        Button btnHuy = dialogSuaNL.findViewById(R.id.btnHuy);
+
+        txtMaNL.setText(selectedNguyenLieu.getManl());
+        edtTenNL.setText(selectedNguyenLieu.getTennl());
+        edtDonVi.setText(selectedNguyenLieu.getDonvi());
+
+        btnLuu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String manl = txtMaNL.getText().toString();
+                String tennl = edtTenNL.getText().toString();
+                String donvi = edtDonVi.getText().toString();
+                editNguyenLIeu(dialogSuaNL, manl, tennl, donvi);
+            }
+        });
+
+        btnHuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogSuaNL.dismiss();
+            }
+        });
+
+        dialogSuaNL.show();
+
+    }
+
+    private void editNguyenLIeu(Dialog dialogSuaNL, String manl, String tennl, String donvi) {
+        ContentValues values = new ContentValues();
+        values.put("TENNL", tennl);
+        values.put("DONVI", donvi);
+
+        int kq = AdminHomeActivity.database.update("NGUYENLIEU", values, "MANL=?", new String[]{manl});
+        if (kq > 0) {
+            Toast.makeText(NguyenLieuActivity.this, "Cập nhật thành công", Toast.LENGTH_LONG).show();
+            dialogSuaNL.dismiss();
+            getNguyenLieuFromDB();
+        } else {
+            Toast.makeText(NguyenLieuActivity.this, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_LONG).show();
+        }
     }
 }

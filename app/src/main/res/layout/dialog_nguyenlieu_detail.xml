@@ -26,19 +26,19 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="248dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_width="150dp">
 
             <TextView
                 android:text="Mã NL"
-                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_width="50dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -50,20 +50,20 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="248dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            android:layout_width="150dp">
 
             <TextView
                 android:text="Tên NL"
-                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView4"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_width="50dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -76,19 +76,19 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="248dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            android:layout_width="150dp">
 
             <TextView
                 android:text="Đơn vị"
-                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView4"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:layout_width="50dp" />
 
             <TextView
                 android:layout_width="wrap_content"
