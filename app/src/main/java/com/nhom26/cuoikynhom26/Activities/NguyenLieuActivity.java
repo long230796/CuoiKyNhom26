@@ -5,7 +5,13 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +30,7 @@ public class NguyenLieuActivity extends AppCompatActivity {
     ListView lvNguyenLieu;
     ImageView imgThemNL;
     ArrayAdapter<NguyenLieu> nguyenLieuAdapter;
+    NguyenLieu selectedNguyenLieu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,7 @@ public class NguyenLieuActivity extends AppCompatActivity {
         addControls();
         getNguyenLieuFromDB();
         addEvents();
+        registerForContextMenu(lvNguyenLieu);
     }
 
     private void addEvents() {
@@ -41,6 +49,33 @@ public class NguyenLieuActivity extends AppCompatActivity {
                 hienThiDialogThemNL();
             }
         });
+
+        lvNguyenLieu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedNguyenLieu = nguyenLieuAdapter.getItem(i);
+                hienThiDialogChiTietNL();
+            }
+        });
+
+
+
+    }
+
+    private void hienThiDialogChiTietNL() {
+        Dialog dialogChiTietNL = new Dialog(NguyenLieuActivity.this);
+        dialogChiTietNL.setContentView(R.layout.dialog_nguyenlieu_detail);
+
+        TextView txtMaNL = dialogChiTietNL.findViewById(R.id.txtMaNL);
+        TextView txtTenNL = dialogChiTietNL.findViewById(R.id.txtTenNL);
+        TextView txtDonVi = dialogChiTietNL.findViewById(R.id.txtDonVi);
+
+        txtMaNL.setText(selectedNguyenLieu.getManl());
+        txtTenNL.setText(selectedNguyenLieu.getTennl());
+        txtDonVi.setText(selectedNguyenLieu.getDonvi());
+
+        dialogChiTietNL.show();
+
 
     }
 
@@ -116,5 +151,54 @@ public class NguyenLieuActivity extends AppCompatActivity {
 
         nguyenLieuAdapter = new ArrayAdapter<NguyenLieu>(NguyenLieuActivity.this, android.R.layout.simple_list_item_1);
         lvNguyenLieu.setAdapter(nguyenLieuAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_option_menu, menu);
+
+        MenuItem mnuSearch = menu.findItem(R.id.mnuSearch);
+        SearchView searchView = (SearchView) mnuSearch.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                nguyenLieuAdapter.getFilter().filter(s);
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.setHeaderTitle("Chọn hành động");
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.action_context_menu, menu);
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mnuSua:
+//                hienThiManHinhEditPhong();
+                Toast.makeText(this, "Sửa", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.mnuXoa:
+//                hienThiManHinhXoaPhong();
+                Toast.makeText(this, "Xóa", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+        return super.onContextItemSelected(item);
     }
 }
