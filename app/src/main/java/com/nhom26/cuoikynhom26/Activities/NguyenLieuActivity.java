@@ -197,18 +197,56 @@ public class NguyenLieuActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuSua:
-                hienThiManHinhEditPhong();
+                hienThiDialogEditPhong();
                 break;
 
             case R.id.mnuXoa:
-//                hienThiManHinhXoaPhong();
+                hienThiDialogXoaPhong();
                 break;
 
         }
         return super.onContextItemSelected(item);
     }
 
-    private void hienThiManHinhEditPhong() {
+    private void hienThiDialogXoaPhong() {
+
+        final Dialog dialogXoa = new Dialog(NguyenLieuActivity.this);
+        dialogXoa.setContentView(R.layout.dialog_nguyenlieu_delete);
+
+        Button btnCo = dialogXoa.findViewById(R.id.btnCo);
+        Button btnKhong = dialogXoa.findViewById(R.id.btnKhong);
+
+        btnCo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                delete(dialogXoa);
+            }
+        });
+
+        btnKhong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogXoa.dismiss();
+            }
+        });
+
+        dialogXoa.show();
+
+
+    }
+
+    private void delete(Dialog dialogXoa) {
+        int kq = AdminHomeActivity.database.delete("NGUYENLIEU", "MANL=?", new String[]{selectedNguyenLieu.getManl()});
+        if (kq > 0) {
+            Toast.makeText(NguyenLieuActivity.this, "Xóa thành công", Toast.LENGTH_SHORT).show();
+            dialogXoa.dismiss();
+            getNguyenLieuFromDB();
+        } else {
+            Toast.makeText(NguyenLieuActivity.this, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void hienThiDialogEditPhong() {
         final Dialog dialogSuaNL = new Dialog(NguyenLieuActivity.this);
         dialogSuaNL.setContentView(R.layout.dialog_nguyenlieu_edit);
 
