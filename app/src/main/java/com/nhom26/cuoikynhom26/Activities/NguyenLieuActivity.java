@@ -203,18 +203,18 @@ public class NguyenLieuActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuSua:
-                hienThiDialogEditPhong();
+                hienThiDialogEditNL();
                 break;
 
             case R.id.mnuXoa:
-                hienThiDialogXoaPhong();
+                hienThiDialogXoaNL();
                 break;
 
         }
         return super.onContextItemSelected(item);
     }
 
-    private void hienThiDialogXoaPhong() {
+    private void hienThiDialogXoaNL() {
 
         final Dialog dialogXoa = new Dialog(NguyenLieuActivity.this);
         dialogXoa.setContentView(R.layout.dialog_nguyenlieu_delete);
@@ -252,7 +252,7 @@ public class NguyenLieuActivity extends AppCompatActivity {
         }
     }
 
-    private void hienThiDialogEditPhong() {
+    private void hienThiDialogEditNL() {
         final Dialog dialogSuaNL = new Dialog(NguyenLieuActivity.this);
         dialogSuaNL.setContentView(R.layout.dialog_nguyenlieu_edit);
 

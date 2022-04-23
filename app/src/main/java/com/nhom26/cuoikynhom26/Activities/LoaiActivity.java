@@ -5,6 +5,11 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,7 +39,7 @@ public class LoaiActivity extends AppCompatActivity {
         addControls();
         getLoaiFromDB();
         addEvents();
-//        registerForContextMenu(lvNguyenLieu);
+        registerForContextMenu(lvLoai);
     }
 
     private void addEvents() {
@@ -148,5 +153,98 @@ public class LoaiActivity extends AppCompatActivity {
         imgThemLoai = (ImageView) findViewById(R.id.imgThemLoai);
         loaiAdapter = new ArrayAdapter<Loai>(LoaiActivity.this, android.R.layout.simple_list_item_1);
         lvLoai.setAdapter(loaiAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_option_menu, menu);
+
+        MenuItem mnuSearch = menu.findItem(R.id.mnuSearch);
+        SearchView searchView = (SearchView) mnuSearch.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                loaiAdapter.getFilter().filter(s);
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.setHeaderTitle("Chọn hành động");
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.action_context_menu, menu);
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mnuSua:
+                hienThiDialogEditLoai();
+                break;
+
+            case R.id.mnuXoa:
+//                hienThiDialogXoaPhong();
+                break;
+
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    private void hienThiDialogEditLoai() {
+        final Dialog dialogSuaLoai = new Dialog(LoaiActivity.this);
+        dialogSuaLoai.setContentView(R.layout.dialog_loai_edit);
+
+        final TextView txtMaLoai = dialogSuaLoai.findViewById(R.id.txtMaLoai);
+        final EditText edtTenLoai = dialogSuaLoai.findViewById(R.id.edtTenLoai);
+        Button btnLuu = dialogSuaLoai.findViewById(R.id.btnLuu);
+        Button btnHuy = dialogSuaLoai.findViewById(R.id.btnHuy);
+
+        txtMaLoai.setText(selectedLoai.getMaloai());
+        edtTenLoai.setText(selectedLoai.getTenloai());
+
+        btnLuu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String maloai = txtMaLoai.getText().toString();
+                String tenloai = edtTenLoai.getText().toString();
+                editLoai(dialogSuaLoai, maloai, tenloai);
+            }
+        });
+
+        btnHuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogSuaLoai.dismiss();
+            }
+        });
+
+        dialogSuaLoai.show();
+
+    }
+
+    private void editLoai(Dialog dialogSuaLoai, String maloai, String tenloai) {
+        ContentValues values = new ContentValues();
+        values.put("TENLOAI", tenloai);
+
+        int kq = AdminHomeActivity.database.update("LOAIMONAN", values, "MALOAI=?", new String[]{maloai});
+        if (kq > 0) {
+            Toast.makeText(LoaiActivity.this, "Cập nhật thành công", Toast.LENGTH_LONG).show();
+            dialogSuaLoai.dismiss();
+            getLoaiFromDB();
+        } else {
+            Toast.makeText(LoaiActivity.this, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_LONG).show();
+        }
     }
 }
