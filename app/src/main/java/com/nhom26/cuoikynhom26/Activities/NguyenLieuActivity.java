@@ -154,6 +154,12 @@ public class NguyenLieuActivity extends AppCompatActivity {
     }
 
     private void addControls() {
+
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setIcon(R.drawable.ic_grain_sack);
+//        actionBar.setDisplayUseLogoEnabled(true);
+//        actionBar.setDisplayShowHomeEnabled(true);
+
         lvNguyenLieu = (ListView) findViewById(R.id.lvNguyenLieu);
         imgThemNL = (ImageView) findViewById(R.id.imgThemNL);
 

@@ -74,6 +74,18 @@ public class AdminHomeActivity extends AppCompatActivity {
                 hienThiManHinhNL();
             }
         });
+        
+        layoutLoai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hienThiManHinhLoai();
+            }
+        });
+    }
+
+    private void hienThiManHinhLoai() {
+        Intent intent = new Intent(AdminHomeActivity.this, LoaiActivity.class);
+        startActivity(intent);
     }
 
     private void hienThiManHinhNL() {

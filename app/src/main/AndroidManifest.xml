@@ -11,17 +11,18 @@
         <activity android:name=".Activities.MainActivity" />
         <activity
             android:name=".Activities.HomeActivity"
-            android:label=" Home">
-
-        </activity>
-        <activity android:name=".Activities.NguyenLieuActivity" />
-        <activity android:name=".Activities.AdminHomeActivity" android:label="Trang Chủ Admin">
+            android:label=" Home"></activity>
+        <activity android:name=".Activities.NguyenLieuActivity" android:label="Nguyên liệu"/>
+        <activity
+            android:name=".Activities.AdminHomeActivity"
+            android:label="Trang Chủ Admin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activities.LoaiActivity" android:label="Loại món ăn"></activity>
     </application>
 
 </manifest>
