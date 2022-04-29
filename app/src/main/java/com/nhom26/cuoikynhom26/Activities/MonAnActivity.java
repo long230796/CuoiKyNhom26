@@ -1,5 +1,6 @@
 package com.nhom26.cuoikynhom26.Activities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -12,8 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.nhom26.cuoikynhom26.R;
 import com.nhom26.cuoikynhom26.model.MonAn;
@@ -30,7 +33,7 @@ public class MonAnActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mon_an);
         addControls();
-        getLoaiFromDB();
+        getMonAnFromDB();
         addEvents();
         registerForContextMenu(lvMonAn);
     }
@@ -68,11 +71,11 @@ public class MonAnActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 113 && resultCode == 115) {
-            getLoaiFromDB();
+            getMonAnFromDB();
         }
     }
 
-    private void getLoaiFromDB() {
+    private void getMonAnFromDB() {
         AdminHomeActivity.database = openOrCreateDatabase(AdminHomeActivity.DATABASE_NAME, MODE_PRIVATE, null);
         Cursor cursor = AdminHomeActivity.database.rawQuery("SELECT * FROM MONAN", null);
         monAnAdapter.clear();
@@ -137,10 +140,55 @@ public class MonAnActivity extends AppCompatActivity {
                 break;
 
             case R.id.mnuXoa:
-//                hienThiDialogXoaLoai();
+                hienThiDialogXoaLoai();
                 break;
 
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void hienThiDialogXoaLoai() {
+        final Dialog dialogXoa = new Dialog(MonAnActivity.this);
+        dialogXoa.setContentView(R.layout.dialog_delete);
+
+        Button btnCo = dialogXoa.findViewById(R.id.btnCo);
+        Button btnKhong = dialogXoa.findViewById(R.id.btnKhong);
+
+        btnCo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                delete(dialogXoa);
+            }
+        });
+
+        btnKhong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogXoa.dismiss();
+            }
+        });
+
+        dialogXoa.show();
+    }
+
+    private void delete(Dialog dialogXoa) {
+        int kq = AdminHomeActivity.database.delete("MONAN", "MAMON=?", new String[]{selectedMonAn.getMamon()});
+        if (kq > 0) {
+            int kq2 = AdminHomeActivity.database.delete("CTCONGTHUC", "MACT=?", new String[]{selectedMonAn.getMact()});
+            if (kq2 > 0) {
+                int kq3 = AdminHomeActivity.database.delete("CONGTHUC", "MACT=?", new String[]{selectedMonAn.getMact()});
+                if (kq3 > 0) {
+                    Toast.makeText(MonAnActivity.this, "Xóa thành công", Toast.LENGTH_SHORT).show();
+                    getMonAnFromDB();
+                    dialogXoa.dismiss();
+                } else {
+                    Toast.makeText(this, "Không thể xóa CONGTHUC", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Không thể xóa CTCONGTHUC", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(MonAnActivity.this, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+        }
     }
 }
