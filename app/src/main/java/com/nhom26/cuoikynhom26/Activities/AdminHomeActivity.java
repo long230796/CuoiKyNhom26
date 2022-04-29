@@ -49,16 +49,16 @@ public class AdminHomeActivity extends AppCompatActivity {
 
         tb1 = tabHost.newTabSpec("tab1");
         tb1.setContent(R.id.tab1);
-        tb1.setIndicator("Home", getResources().getDrawable(R.drawable.ic_beans));
+        tb1.setIndicator("", getResources().getDrawable(R.drawable.ic_home_black_24dp));
         tabHost.addTab(tb1);
 
         tb2 = tabHost.newTabSpec("tab2");
         tb2.setContent(R.id.tab2);
-        tb2.setIndicator("Search");
+        tb2.setIndicator("", getResources().getDrawable(R.drawable.ic_search_black_24dp));
         tabHost.addTab(tb2);
 
         tb3 = tabHost.newTabSpec("tab3");
-        tb3.setIndicator("User");
+        tb3.setIndicator("", getResources().getDrawable(R.drawable.ic_person_black_24dp));
         tb3.setContent(R.id.tab3);
         tabHost.addTab(tb3);
 
@@ -81,6 +81,18 @@ public class AdminHomeActivity extends AppCompatActivity {
                 hienThiManHinhLoai();
             }
         });
+
+        layoutFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hienThiManHinhFood();
+            }
+        });
+    }
+
+    private void hienThiManHinhFood() {
+        Intent intent = new Intent(AdminHomeActivity.this, MonAnActivity.class);
+        startActivity(intent);
     }
 
     private void hienThiManHinhLoai() {

@@ -20,7 +20,7 @@
         android:gravity="center_vertical">
 
         <TextView
-            android:text="Danh sách loại"
+            android:text="Danh sách món ăn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/ic_add_circle_black_24dp"
-            android:id="@+id/imgThemLoai"
+            android:id="@+id/imgThemMonAn"
             android:layout_weight="0.05" />
 
     </LinearLayout>
@@ -40,5 +40,5 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="447dp"
-        android:id="@+id/lvLoai" />
+        android:id="@+id/lvMonAn" />
 </LinearLayout>

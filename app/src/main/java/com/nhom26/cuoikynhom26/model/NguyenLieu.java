@@ -10,6 +10,7 @@ public class NguyenLieu implements Serializable {
     String manl;
     String tennl;
     String donvi;
+    String dinhluong;
 
     public NguyenLieu(String manl, String tennl, String donvi) {
         this.manl = manl;
@@ -42,6 +43,15 @@ public class NguyenLieu implements Serializable {
 
     public void setDonvi(String donvi) {
         this.donvi = donvi;
+    }
+
+    public void setDinhluong(String dinhluong) {
+        this.dinhluong = dinhluong;
+    }
+
+    public String getDinhluong() {
+
+        return dinhluong;
     }
 
     @Override
