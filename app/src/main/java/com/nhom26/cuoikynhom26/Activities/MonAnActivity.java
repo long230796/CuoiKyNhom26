@@ -77,7 +77,7 @@ public class MonAnActivity extends AppCompatActivity {
 
     private void getMonAnFromDB() {
         AdminHomeActivity.database = openOrCreateDatabase(AdminHomeActivity.DATABASE_NAME, MODE_PRIVATE, null);
-        Cursor cursor = AdminHomeActivity.database.rawQuery("SELECT * FROM MONAN", null);
+        Cursor cursor = AdminHomeActivity.database.rawQuery("SELECT MAMON, MALOAI, MACT, TENMON, MOTA FROM MONAN", null);
         monAnAdapter.clear();
         while (cursor.moveToNext()) {
             String mamon = cursor.getString(0);
@@ -85,7 +85,7 @@ public class MonAnActivity extends AppCompatActivity {
             String mact = cursor.getString(2);
             String tenmon = cursor.getString(3);
             String mota = cursor.getString(4);
-            String hinhanh = cursor.getString(5);
+            String hinhanh = "";
 
             MonAn monan = new MonAn(mamon, maloai, mact, tenmon, mota, hinhanh);
             monAnAdapter.add(monan);
@@ -136,18 +136,27 @@ public class MonAnActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mnuSua:
-//                hienThiDialogEditLoai();
+                hienThiDialogEditLoai();
                 break;
 
             case R.id.mnuXoa:
-                hienThiDialogXoaLoai();
+                hienThiDialogXoaMonAn();
                 break;
 
         }
         return super.onContextItemSelected(item);
     }
 
-    private void hienThiDialogXoaLoai() {
+    private void hienThiDialogEditLoai() {
+
+        Intent intent = new Intent(MonAnActivity.this, SuamonanActivity.class);
+        intent.putExtra("monan", selectedMonAn);
+
+        startActivityForResult(intent, 113);
+
+    }
+
+    private void hienThiDialogXoaMonAn() {
         final Dialog dialogXoa = new Dialog(MonAnActivity.this);
         dialogXoa.setContentView(R.layout.dialog_delete);
 

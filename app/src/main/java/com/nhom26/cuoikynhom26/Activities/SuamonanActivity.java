@@ -31,16 +31,15 @@ import com.nhom26.cuoikynhom26.adapter.LoaiSpinnerAdapter;
 import com.nhom26.cuoikynhom26.adapter.NguyenLieuAdapter;
 import com.nhom26.cuoikynhom26.adapter.NguyenLieuSpinnerAdapter;
 import com.nhom26.cuoikynhom26.model.Loai;
+import com.nhom26.cuoikynhom26.model.MonAn;
 import com.nhom26.cuoikynhom26.model.NguyenLieu;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Random;
 
-public class ThemmonanActivity extends AppCompatActivity {
+public class SuamonanActivity extends AppCompatActivity {
 
     EditText edtTenMonAn;
     EditText edtBuocLam;
@@ -58,9 +57,10 @@ public class ThemmonanActivity extends AppCompatActivity {
 
     NguyenLieu selectedNguyenLieu;
     Loai selectedLoai;
+    MonAn monan;
     int selectedItemNguyenLieu;
 
-    String imageString;
+    String imageString = null;
 
     ArrayList<Loai> loaiList = new ArrayList<>();
     ArrayList<NguyenLieu> nlList = new ArrayList<>();
@@ -73,7 +73,7 @@ public class ThemmonanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_themmonan);
+        setContentView(R.layout.activity_suamonan);
         addControls();
         getLoaiFromDB();
         addEvents();
@@ -100,7 +100,7 @@ public class ThemmonanActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (kiemTraDuLieu()) {
-                   themMonAnVaoDB();
+                    suaMonAn();
                 }
             }
         });
@@ -127,62 +127,62 @@ public class ThemmonanActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                selectedLoai = (Loai) adapterView.getItemAtPosition(0);
             }
         });
     }
 
-    private void themMonAnVaoDB() {
+    private void suaMonAn() {
 
-        Random r = new Random();
-        int randomInt1 = r.nextInt(10000) + 1;
-        int randomInt2 = r.nextInt(10000) + 1;
         // them mon an
         ContentValues values1 = new ContentValues();
-        values1.put("MAMON", "m" + randomInt1);
-        values1.put("MALOAI", selectedLoai.getMaloai());
-        values1.put("MACT", "ct" + randomInt2);
         values1.put("TENMON", edtTenMonAn.getText().toString());
         values1.put("MOTA", edtMoTa.getText().toString());
-        values1.put("ANHMINHHOA", imageString);
+        values1.put("MALOAI", selectedLoai.getMaloai());
+        if (imageString != null) {
+            values1.put("ANHMINHHOA", imageString);
+        }
 
-        int kq1 = (int) AdminHomeActivity.database.insert("MONAN",null , values1);
+        int kq1 = (int) AdminHomeActivity.database.update("MONAN", values1, "MAMON=?", new String[]{monan.getMamon()});
         if (kq1 > 0) {
             // them cong thuc
             ContentValues values2 = new ContentValues();
-            values2.put("MAMON", "m" + randomInt1);
-            values2.put("MACT", "ct" + randomInt2);
             values2.put("CACHLAM", edtBuocLam.getText().toString());
 
-            int kq2 = (int) AdminHomeActivity.database.insert("CONGTHUC",null , values2);
+            int kq2 = (int) AdminHomeActivity.database.update("CONGTHUC", values2, "MACT=?", new String[]{monan.getMact()});
             if (kq2 > 0) {
-                // them ctcongthuc
-                boolean isSuccess = true;
-                ContentValues values3 = new ContentValues();
-                values3.put("MACT", "ct" + randomInt2);
-                for (int i = 0; i < nguyenLieuAdapter.getCount(); i ++) {
-                    values3.put("MANL", nguyenLieuAdapter.getItem(i).getManl());
-                    values3.put("DINHLUONG", nguyenLieuAdapter.getItem(i).getDinhluong());
-                    int kq3 = (int) AdminHomeActivity.database.insert("CTCONGTHUC",null , values3);
-                    if (kq3 == 0 || kq3 < 0) {
-                        Toast.makeText(this, "không thể thêm nguyên liệu", Toast.LENGTH_SHORT).show();
-                        isSuccess = false;
-                        break;
+                // xoa ctcongthuc
+                int kq3 = AdminHomeActivity.database.delete("CTCONGTHUC", "MACT=?", new String[]{monan.getMact()});
+                if (kq3 > 0) {
+                    // them ctcongthuc
+                    boolean isSuccess = true;
+                    ContentValues values3 = new ContentValues();
+                    values3.put("MACT", monan.getMact());
+                    for (int i = 0; i < nguyenLieuAdapter.getCount(); i ++) {
+                        values3.put("MANL", nguyenLieuAdapter.getItem(i).getManl());
+                        values3.put("DINHLUONG", nguyenLieuAdapter.getItem(i).getDinhluong());
+                        int kq4 = (int) AdminHomeActivity.database.insert("CTCONGTHUC",null , values3);
+                        if (kq4 == 0 || kq4 < 0) {
+                            Toast.makeText(this, "không thể chỉnh sửa nguyên liệu", Toast.LENGTH_SHORT).show();
+                            isSuccess = false;
+                            break;
+                        }
+
+                    }
+                    if (isSuccess) {
+                        Toast.makeText(this, "Chỉnh sửa món thành công", Toast.LENGTH_SHORT).show();
+                        setResult(115);
+                        finish();
+                    } else {
+                        Toast.makeText(this, "Có lỗi xảy ra, Thêm món thất bại.", Toast.LENGTH_SHORT).show();
                     }
 
                 }
-                if (isSuccess) {
-                    Toast.makeText(this, "Thêm món thành công", Toast.LENGTH_SHORT).show();
-                    setResult(115);
-                    finish();
-                } else {
-                    Toast.makeText(this, "Có lỗi xảy ra, Thêm món thất bại.", Toast.LENGTH_SHORT).show();
-                }
+
             } else {
-                Toast.makeText(this, "Không thể thêm công thức", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Không thể cập nhật công thức", Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(ThemmonanActivity.this, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_LONG).show();
+            Toast.makeText(SuamonanActivity.this, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -190,10 +190,10 @@ public class ThemmonanActivity extends AppCompatActivity {
         String tenmon = edtTenMonAn.getText().toString();
         Loai loai = selectedLoai;
         String mota = edtMoTa.getText().toString();
-        String anh = txtAnh.getText().toString();
+//        String anh = txtAnh.getText().toString();
         int nlSize = nguyenLieuAdapter.getCount();
         String buoclam = edtBuocLam.getText().toString();
-        if (!tenmon.matches("") && loai != null && !mota.matches("") && !anh.matches("") && nlSize != 0 && !buoclam.matches("")) {
+        if (!tenmon.matches("") && loai != null && !mota.matches("") && nlSize != 0 && !buoclam.matches("")) {
             return true;
         } else {
             Toast.makeText(this, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
@@ -214,7 +214,7 @@ public class ThemmonanActivity extends AppCompatActivity {
         if (requestCode == 113 && resultCode == RESULT_OK) {
             try {
                 Uri selectedImage = data.getData();
-                int fileSize = getFileSizeFromUri(ThemmonanActivity.this, selectedImage);
+                int fileSize = getFileSizeFromUri(SuamonanActivity.this, selectedImage);
                 if (fileSize < 250) {
                     Bitmap hinh = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
                     imageString = BitMapToString(hinh);
@@ -247,13 +247,6 @@ public class ThemmonanActivity extends AppCompatActivity {
     }
 
 
-
-    private void checkFileSize(Uri selectedImage) {
-        String path = selectedImage.getPath();
-        File file  = new File(path);
-        int file_size = Integer.parseInt(String.valueOf(file.length()/1024));
-        Toast.makeText(this, String.valueOf(path), Toast.LENGTH_SHORT).show();
-    }
 
     public String getFileName(Uri uri) {
         String result = null;
@@ -295,7 +288,7 @@ public class ThemmonanActivity extends AppCompatActivity {
         }
 
         if (nlList.size() != 0) {
-            final Dialog dialogThemNL = new Dialog(ThemmonanActivity.this);
+            final Dialog dialogThemNL = new Dialog(SuamonanActivity.this);
             dialogThemNL.setContentView(R.layout.dialog_nguyenlieu_add_v2);
             final Spinner spnNL = dialogThemNL.findViewById(R.id.spnNL);
             final EditText edtDinhLuong = dialogThemNL.findViewById(R.id.edtDinhLuong);
@@ -326,7 +319,7 @@ public class ThemmonanActivity extends AppCompatActivity {
                         selectedNguyenLieu = null;
                         dialogThemNL.dismiss();
                     } else {
-                        Toast.makeText(ThemmonanActivity.this, "Vui Lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SuamonanActivity.this, "Vui Lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -377,6 +370,9 @@ public class ThemmonanActivity extends AppCompatActivity {
     }
 
     private void addControls() {
+        Intent intent = getIntent();
+        monan = (MonAn) intent.getSerializableExtra("monan");
+
         edtTenMonAn = (EditText) findViewById(R.id.edtTenMonAn);
         spnLoai = (Spinner) findViewById(R.id.spnLoai);
         edtMoTa = (EditText) findViewById(R.id.edtMoTa);
@@ -397,8 +393,51 @@ public class ThemmonanActivity extends AppCompatActivity {
         nguyenLieuAdapter = new NguyenLieuAdapter(this, R.layout.nguyenlieu_custom_listview);
         lvNguyenLieu.setAdapter(nguyenLieuAdapter);
 
+        initValueMonAn();
         registerForContextMenu(lvNguyenLieu);
 
+    }
+
+    private void initValueMonAn() {
+        edtTenMonAn.setText(monan.getTenmon());
+        edtMoTa.setText(monan.getMota());
+        spnLoai.setSelection(getPositionMonAn());
+        getCongThucCTCongThucByMaCT(monan.getMact());
+
+    }
+
+    private void getCongThucCTCongThucByMaCT(String maCT) {
+        AdminHomeActivity.database = openOrCreateDatabase(AdminHomeActivity.DATABASE_NAME, MODE_PRIVATE, null);
+        Cursor cursor = AdminHomeActivity.database.rawQuery("SELECT * FROM CONGTHUC WHERE MACT = ?", new String[]{maCT});
+
+        while (cursor.moveToNext()) {
+            edtBuocLam.setText(cursor.getString(2));
+        }
+        cursor.close();
+
+        Cursor cursor1 = AdminHomeActivity.database.rawQuery("SELECT * FROM CTCONGTHUC WHERE MACT = ?", new String[]{maCT});
+        nguyenLieuAdapter.clear();
+        while (cursor1.moveToNext()) {
+            for (int i = 0; i < nlList.size(); i ++) {
+                if (nlList.get(i).getManl().equals(cursor1.getString(1))) {
+                    selectedNguyenLieu = nlList.get(i);
+                    selectedNguyenLieu.setDinhluong(cursor1.getString(2));
+                    nguyenLieuAdapter.add(selectedNguyenLieu);
+                }
+            }
+        }
+        cursor1.close();
+        selectedNguyenLieu = null;
+
+    }
+
+    public int getPositionMonAn() {
+        for (int i = 0; i < loaiList.size(); i ++) {
+            if (monan.getMaloai().equals(loaiList.get(i).getMaloai())) {
+                return i;
+            }
+        }
+        return 0;
     }
 
     @Override
@@ -432,7 +471,7 @@ public class ThemmonanActivity extends AppCompatActivity {
     }
 
     private void hienThiDialogEditNL() {
-        final Dialog dialogSuaNL = new Dialog(ThemmonanActivity.this);
+        final Dialog dialogSuaNL = new Dialog(SuamonanActivity.this);
         dialogSuaNL.setContentView(R.layout.dialog_nguyenlieu_edit_v2);
 
         TextView txtMaNL = dialogSuaNL.findViewById(R.id.txtMaNL);
@@ -452,7 +491,7 @@ public class ThemmonanActivity extends AppCompatActivity {
             public void onClick(View view) {
                 nguyenLieuAdapter.getItem(selectedItemNguyenLieu).setDinhluong(edtDinhLuong.getText().toString());
                 nguyenLieuAdapter.notifyDataSetChanged();
-                Toast.makeText(ThemmonanActivity.this, "cập nhật định lượng", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SuamonanActivity.this, "cập nhật định lượng", Toast.LENGTH_SHORT).show();
                 selectedNguyenLieu = null;
                 dialogSuaNL.dismiss();
             }
