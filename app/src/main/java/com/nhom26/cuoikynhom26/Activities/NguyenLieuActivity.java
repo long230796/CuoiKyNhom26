@@ -2,6 +2,7 @@ package com.nhom26.cuoikynhom26.Activities;
 
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nhom26.cuoikynhom26.Activities.account.LoginActivity;
 import com.nhom26.cuoikynhom26.R;
 import com.nhom26.cuoikynhom26.model.NguyenLieu;
 
@@ -36,10 +38,16 @@ public class NguyenLieuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nguyen_lieu);
+        hienThiManHinhLogin();
         addControls();
         getNguyenLieuFromDB();
         addEvents();
         registerForContextMenu(lvNguyenLieu);
+    }
+
+    private void hienThiManHinhLogin() {
+        Intent intent = new Intent(NguyenLieuActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 
     private void addEvents() {
