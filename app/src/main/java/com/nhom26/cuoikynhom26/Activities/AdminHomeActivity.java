@@ -147,4 +147,10 @@ public class AdminHomeActivity extends AppCompatActivity {
         }
     }
 
+    public void onShowUaThich(View view) {
+        String phonenumber = "0123456789";
+        Intent intent = new Intent(AdminHomeActivity.this, DanhSachUaThich.class);
+        intent.putExtra("phonenumber", phonenumber);
+        startActivity(intent);
+    }
 }

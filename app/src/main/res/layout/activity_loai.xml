@@ -13,6 +13,11 @@
     tools:context="com.nhom26.cuoikynhom26.Activities.NguyenLieuActivity"
     android:weightSum="1">
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="447dp"
+        android:id="@+id/lvLoai" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -37,8 +42,4 @@
 
     </LinearLayout>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="447dp"
-        android:id="@+id/lvLoai" />
 </LinearLayout>

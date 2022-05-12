@@ -34,7 +34,9 @@
         <activity
             android:name=".Activities.ThemmonanActivity"
             android:label="Thêm món ăn" />
-        <activity android:name=".Activities.SuamonanActivity"></activity>
+        <activity android:name=".Activities.SuamonanActivity" />
+        <activity android:name=".Activities.ChiTietMonAnActivity" />
+        <activity android:name=".Activities.DanhSachUaThich"></activity>
     </application>
 
 </manifest>

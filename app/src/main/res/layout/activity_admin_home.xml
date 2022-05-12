@@ -129,12 +129,28 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <CheckBox
-                        android:text="CheckBox"
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkBox" />
+                        android:layout_height="match_parent">
+
+                        <CheckBox
+                            android:text="CheckBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/checkBox" />
+
+                        <Button
+                            android:text="XEM DANH MỤC ƯA THÍCH"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/btn_uathich"
+                            android:onClick="onShowUaThich"
+                            />
+                    </LinearLayout>
+
                 </LinearLayout>
+
             </FrameLayout>
 
             <TabWidget

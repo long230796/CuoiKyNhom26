@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nhom26.cuoikynhom26.R;
@@ -50,7 +51,9 @@ public class MonAnActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedMonAn = monAnAdapter.getItem(i);
-//                hienThiDialogChiTietLoai();
+                Intent intent = new Intent(MonAnActivity.this, ChiTietMonAnActivity.class);
+                intent.putExtra("selectedMonAn", selectedMonAn);
+                startActivity(intent);
             }
         });
 
@@ -74,6 +77,7 @@ public class MonAnActivity extends AppCompatActivity {
             getMonAnFromDB();
         }
     }
+
 
     private void getMonAnFromDB() {
         AdminHomeActivity.database = openOrCreateDatabase(AdminHomeActivity.DATABASE_NAME, MODE_PRIVATE, null);
