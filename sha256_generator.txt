@@ -1,0 +1,1 @@
+keytool -list -v -keystore /home/hoangg/.android/debug.keystore -alias AndroidDebugKey -storepass android

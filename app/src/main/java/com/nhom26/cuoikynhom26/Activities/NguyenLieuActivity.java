@@ -38,7 +38,7 @@ public class NguyenLieuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nguyen_lieu);
-        hienThiManHinhLogin();
+        //hienThiManHinhLogin();
         addControls();
         getNguyenLieuFromDB();
         addEvents();

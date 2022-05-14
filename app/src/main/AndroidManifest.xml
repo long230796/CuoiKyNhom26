@@ -5,8 +5,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
+        android:hardwareAccelerated="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,11 +22,7 @@
         <activity
             android:name=".Activities.AdminHomeActivity"
             android:label="Trang Chủ Admin">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.LoaiActivity"
@@ -38,10 +34,14 @@
             android:label="Thêm món ăn" />
 
         <activity android:name=".Activities.SuamonanActivity"></activity>
-        <activity android:name=".Activities.account.LoginActivity"></activity>
+        <activity android:name=".Activities.account.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Activities.account.RegisterActivity"></activity>
         <activity android:name=".Activities.account.ResetPassActivity"></activity>
-        <activity android:name=".Activities.account.PhoneVerifyActivity"></activity>
 
 
     </application>

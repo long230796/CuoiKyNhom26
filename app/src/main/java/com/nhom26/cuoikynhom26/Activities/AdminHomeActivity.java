@@ -7,9 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nhom26.cuoikynhom26.Activities.account.LoginActivity;
+import com.nhom26.cuoikynhom26.Activities.account.UserControl;
 import com.nhom26.cuoikynhom26.R;
+import com.nhom26.cuoikynhom26.model.User;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,18 +34,32 @@ public class AdminHomeActivity extends AppCompatActivity {
     LinearLayout layoutLoai;
     LinearLayout layoutFood;
 
-
+    UserControl usrctl;
+    User lastuser;
+    TextView logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_home);
-
-        processCopy();
-        addControls();
-        addEvents();
+        lastuser = usrctl.getLastUser(getApplicationContext());
+        if (lastuser!=null){
+            if (lastuser.getVaitro().equals("0")){
+                setContentView(R.layout.activity_admin_home);
+                processCopy();
+                addControls();
+                addEvents();
+            }
+        }
+        else hienThiManHinhLogin();
+//        setContentView(R.layout.activity_admin_home);
+//        processCopy();
+//        addControls();
+//        addEvents();
     }
 
-
+    private void hienThiManHinhLogin() {
+        Intent intent = new Intent(AdminHomeActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
 
     private void addControls() {
         tabHost = (TabHost) findViewById(R.id.tabHost);
@@ -65,6 +83,8 @@ public class AdminHomeActivity extends AppCompatActivity {
         layoutLoai = (LinearLayout) findViewById(R.id.layoutLoai);
         layoutNL = (LinearLayout) findViewById(R.id.layoutNL);
         layoutFood = (LinearLayout) findViewById(R.id.layoutFood);
+
+        logout = (TextView) findViewById(R.id.txtLogout);
     }
 
     private void addEvents() {
@@ -86,6 +106,13 @@ public class AdminHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 hienThiManHinhFood();
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                getApplicationContext().getSharedPreferences("lastUser", 0).edit().clear().commit();
+                hienThiManHinhLogin();
             }
         });
     }

@@ -26,6 +26,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nhom26.cuoikynhom26.Activities.account.UserControl;
 import com.nhom26.cuoikynhom26.R;
 import com.nhom26.cuoikynhom26.adapter.LoaiSpinnerAdapter;
 import com.nhom26.cuoikynhom26.adapter.NguyenLieuAdapter;
@@ -33,6 +34,7 @@ import com.nhom26.cuoikynhom26.adapter.NguyenLieuSpinnerAdapter;
 import com.nhom26.cuoikynhom26.model.Loai;
 import com.nhom26.cuoikynhom26.model.MonAn;
 import com.nhom26.cuoikynhom26.model.NguyenLieu;
+import com.nhom26.cuoikynhom26.model.User;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -68,8 +70,6 @@ public class SuamonanActivity extends AppCompatActivity {
     LinearLayout layoutThemNL;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +77,8 @@ public class SuamonanActivity extends AppCompatActivity {
         addControls();
         getLoaiFromDB();
         addEvents();
+
+
     }
 
     private void addEvents() {

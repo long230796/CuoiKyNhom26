@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -26,12 +27,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.nhom26.cuoikynhom26.Activities.account.UserControl;
 import com.nhom26.cuoikynhom26.R;
 import com.nhom26.cuoikynhom26.adapter.LoaiSpinnerAdapter;
 import com.nhom26.cuoikynhom26.adapter.NguyenLieuAdapter;
 import com.nhom26.cuoikynhom26.adapter.NguyenLieuSpinnerAdapter;
 import com.nhom26.cuoikynhom26.model.Loai;
 import com.nhom26.cuoikynhom26.model.NguyenLieu;
+import com.nhom26.cuoikynhom26.model.User;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -67,9 +71,7 @@ public class ThemmonanActivity extends AppCompatActivity {
 
     LinearLayout layoutThemNL;
 
-
-
-
+//    UserControl usrctl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +79,12 @@ public class ThemmonanActivity extends AppCompatActivity {
         addControls();
         getLoaiFromDB();
         addEvents();
+//        //User user= usrctl.getSavedObjectFromPreference(getApplicationContext(), "lastUser", "user", User.class);
+//        User user = usrctl.getLastUser(getApplicationContext());
+//        if (user!= null){
+//            Toast.makeText(this, user.getPhone(), Toast.LENGTH_SHORT).show();
+//        }
+//        else Toast.makeText(this, "No user", Toast.LENGTH_SHORT).show();
     }
 
     private void addEvents() {
