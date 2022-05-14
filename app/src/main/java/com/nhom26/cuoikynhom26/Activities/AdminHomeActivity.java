@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ public class AdminHomeActivity extends AppCompatActivity {
     LinearLayout layoutNL;
     LinearLayout layoutLoai;
     LinearLayout layoutFood;
+    Button btnHome;
 
 
     @Override
@@ -65,6 +67,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         layoutLoai = (LinearLayout) findViewById(R.id.layoutLoai);
         layoutNL = (LinearLayout) findViewById(R.id.layoutNL);
         layoutFood = (LinearLayout) findViewById(R.id.layoutFood);
+        btnHome = (Button) findViewById(R.id.btnHome);
     }
 
     private void addEvents() {
@@ -86,6 +89,13 @@ public class AdminHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 hienThiManHinhFood();
+            }
+        });
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminHomeActivity.this, HomeActivity.class);
+                startActivity(intent);
             }
         });
     }

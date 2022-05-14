@@ -31,7 +31,11 @@
             android:name=".Activities.LoaiActivity"
             android:label="Loại món ăn" />
         <activity android:name=".Activities.MonAnActivity" />
-        <activity android:name=".Activities.ThemmonanActivity" android:label="Thêm món ăn"></activity>
+        <activity
+            android:name=".Activities.ThemmonanActivity"
+            android:label="Thêm món ăn" />
+        <activity android:name=".Activities.ChiTietMonAnActivity" />
+        <activity android:name=".Activities.DanhSachMonTheoLoaiActivity"></activity>
     </application>
 
 </manifest>
