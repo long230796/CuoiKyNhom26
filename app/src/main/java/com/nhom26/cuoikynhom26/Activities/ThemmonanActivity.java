@@ -1,15 +1,21 @@
 package com.nhom26.cuoikynhom26.Activities;
 
 import android.app.Dialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -45,6 +51,7 @@ public class ThemmonanActivity extends AppCompatActivity {
     EditText edtTenMonAn;
     EditText edtBuocLam;
     EditText edtMoTa;
+    EditText edtLink;
     TextView txtAnh;
     ListView lvNguyenLieu;
     Spinner spnLoai;
@@ -74,6 +81,7 @@ public class ThemmonanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_themmonan);
+        createNotificationChannel();
         addControls();
         getLoaiFromDB();
         addEvents();
@@ -132,6 +140,33 @@ public class ThemmonanActivity extends AppCompatActivity {
         });
     }
 
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("My notification", "My notification", importance);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+    }
+
+    private void notification(String title, String content) {
+        // event notificate clicked
+        Intent intent = new Intent(this, NguyenLieuActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(ThemmonanActivity.this)
+                .setSmallIcon(R.drawable.ic_rice_bowl)
+                .setContentTitle(title)
+                .setContentText(content)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(ThemmonanActivity.this);
+        managerCompat.notify(1, builder.build());
+    }
+
     private void themMonAnVaoDB() {
 
         Random r = new Random();
@@ -145,6 +180,8 @@ public class ThemmonanActivity extends AppCompatActivity {
         values1.put("TENMON", edtTenMonAn.getText().toString());
         values1.put("MOTA", edtMoTa.getText().toString());
         values1.put("ANHMINHHOA", imageString);
+        values1.put("LINK", edtLink.getText().toString());
+
 
         int kq1 = (int) AdminHomeActivity.database.insert("MONAN",null , values1);
         if (kq1 > 0) {
@@ -172,6 +209,7 @@ public class ThemmonanActivity extends AppCompatActivity {
 
                 }
                 if (isSuccess) {
+                    notification("Bạn có một món ăn mới", edtTenMonAn.getText().toString());
                     Toast.makeText(this, "Thêm món thành công", Toast.LENGTH_SHORT).show();
                     setResult(115);
                     finish();
@@ -190,10 +228,11 @@ public class ThemmonanActivity extends AppCompatActivity {
         String tenmon = edtTenMonAn.getText().toString();
         Loai loai = selectedLoai;
         String mota = edtMoTa.getText().toString();
+        String link = edtLink.getText().toString();
         String anh = txtAnh.getText().toString();
         int nlSize = nguyenLieuAdapter.getCount();
         String buoclam = edtBuocLam.getText().toString();
-        if (!tenmon.matches("") && loai != null && !mota.matches("") && !anh.matches("") && nlSize != 0 && !buoclam.matches("")) {
+        if (!tenmon.matches("") && loai != null && !mota.matches("") && !anh.matches("") && nlSize != 0 && !buoclam.matches("") && !link.matches("")) {
             return true;
         } else {
             Toast.makeText(this, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
@@ -380,6 +419,7 @@ public class ThemmonanActivity extends AppCompatActivity {
         edtTenMonAn = (EditText) findViewById(R.id.edtTenMonAn);
         spnLoai = (Spinner) findViewById(R.id.spnLoai);
         edtMoTa = (EditText) findViewById(R.id.edtMoTa);
+        edtLink = (EditText) findViewById(R.id.edtLinkYoutube);
         txtAnh = (TextView) findViewById(R.id.txtAnh);
         lvNguyenLieu = (ListView) findViewById(R.id.lvNguyenLieu);
         edtBuocLam = (EditText) findViewById(R.id.edtBuocLam);

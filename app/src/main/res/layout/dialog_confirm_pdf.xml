@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:text="Thao tác"
+        android:id="@+id/textView2"
+        style="@style/headerActivity"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/textview_border">
+
+        <TextView
+            android:text="Xuất dữ liệu sang pdf ?"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8"
+            android:textSize="20sp"
+            android:textColor="@android:color/background_dark"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="248dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            style="@style/footerDoubleButton">
+
+            <Button
+                android:text="Xuất"
+                android:id="@+id/btnXuat"
+                style="@style/button_default" />
+
+            <Button
+                android:text="Hủy"
+                android:id="@+id/btnHuy"
+                android:background="@drawable/custom_button"
+                style="@style/button_default" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+

@@ -111,7 +111,107 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/txt_motabuoclam" />
+
                 </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="Bình luận"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView10"
+                        android:layout_weight="0.10"
+                        android:textStyle="normal|bold" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_chat_black_24dp"
+                        android:id="@+id/imageView3"
+                        android:layout_weight="1.79"
+                        android:scaleType="fitStart" />
+                </LinearLayout>
+
+                <ListView
+                    android:nestedScrollingEnabled="true"
+                    android:layout_width="match_parent"
+                    android:id="@+id/lvReviewer"
+                    android:layout_height="200dp"
+                    android:paddingTop="10dp"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
+                    android:background="@drawable/textview_border_thin_bggray"
+                    android:padding="5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:text="Viết bình luận"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView10"
+                        android:layout_weight="0.10"
+                        android:textStyle="normal|bold" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_mode_edit_black_24dp"
+                        android:id="@+id/imageView3"
+                        android:layout_weight="1.79"
+                        android:scaleType="fitStart" />
+                </LinearLayout>
+
+
+                <EditText
+                    android:id="@+id/edtBinhLuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/textview_border_thin"
+                    android:gravity="top|left"
+                    android:inputType="textMultiLine"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical"
+                    android:lines="3"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:scrollHorizontally="false"
+                    android:paddingLeft="5dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="30dp"
+                    android:weightSum="1">
+                    <Button
+                        android:background="@drawable/custom_button"
+                        android:text="Gửi"
+                        android:layout_width="59dp"
+                        android:id="@+id/btnGui"
+                        android:layout_height="39dp"
+                        android:layout_marginTop="10dp"
+                        android:textSize="12sp"
+                        android:layout_weight="0.06"
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

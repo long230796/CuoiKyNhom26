@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -35,8 +36,10 @@
             android:name=".Activities.ThemmonanActivity"
             android:label="Thêm món ăn" />
         <activity android:name=".Activities.SuamonanActivity" />
+        <activity android:name=".Activities.SendMailActivity" />
         <activity android:name=".Activities.ChiTietMonAnActivity" />
-        <activity android:name=".Activities.DanhSachUaThich"></activity>
+        <activity android:name=".Activities.DanhSachUaThich" />
+        <activity android:name=".Activities.YoutubeActivity"></activity>
     </application>
 
 </manifest>

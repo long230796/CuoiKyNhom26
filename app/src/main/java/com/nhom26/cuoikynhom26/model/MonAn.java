@@ -13,6 +13,26 @@ public class MonAn implements Serializable {
     String tenmon;
     String mota;
     String anhminhhoa;
+    String link;
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public MonAn(String mamon, String maloai, String mact, String tenmon, String mota, String anhminhhoa, String link) {
+        this.mamon = mamon;
+        this.maloai = maloai;
+        this.mact = mact;
+        this.tenmon = tenmon;
+        this.mota = mota;
+        this.anhminhhoa = anhminhhoa;
+        this.link = link;
+
+    }
 
     public String getMamon() {
         return mamon;

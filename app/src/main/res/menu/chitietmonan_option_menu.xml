@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/ic_menu_black_24dp"
+        android:orderInCategory="100"
+        android:title="Option Menu"
+        app:showAsAction="always" >
+        <menu>
+            <item android:title="Xuất món ăn"
+                android:id="@+id/mnuPdf"
+                android:icon="@drawable/ic_picture_as_pdf_black_24dp" />
+            <item android:title="Video hướng dẫn"
+                android:id="@+id/mnuVideo"
+                android:icon="@drawable/ic_videocam_black_24dp" />
+        </menu>
+    </item>
+
+</menu>

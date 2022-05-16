@@ -15,8 +15,12 @@
         android:title="Option Menu"
         app:showAsAction="always" >
         <menu>
-            <item android:title="Item" />
-            <item android:title="Item" />
+            <item android:title="Show notification"
+                android:id="@+id/mnuNotification" />
+            <item android:title="Test send mail"
+                android:id="@+id/mnuSendMail" />
+            <item android:title="TestChart"
+                android:id="@+id/mnuChart" />
         </menu>
     </item>
 

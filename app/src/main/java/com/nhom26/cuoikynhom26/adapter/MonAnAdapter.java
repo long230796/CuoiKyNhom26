@@ -1,5 +1,4 @@
 package com.nhom26.cuoikynhom26.adapter;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

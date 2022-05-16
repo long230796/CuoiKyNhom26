@@ -44,6 +44,7 @@ public class SuamonanActivity extends AppCompatActivity {
     EditText edtTenMonAn;
     EditText edtBuocLam;
     EditText edtMoTa;
+    EditText edtLink;
     TextView txtAnh;
     ListView lvNguyenLieu;
     Spinner spnLoai;
@@ -134,10 +135,13 @@ public class SuamonanActivity extends AppCompatActivity {
     private void suaMonAn() {
 
         // them mon an
+
         ContentValues values1 = new ContentValues();
         values1.put("TENMON", edtTenMonAn.getText().toString());
         values1.put("MOTA", edtMoTa.getText().toString());
+        values1.put("LINK", edtLink.getText().toString());
         values1.put("MALOAI", selectedLoai.getMaloai());
+
         if (imageString != null) {
             values1.put("ANHMINHHOA", imageString);
         }
@@ -193,7 +197,8 @@ public class SuamonanActivity extends AppCompatActivity {
 //        String anh = txtAnh.getText().toString();
         int nlSize = nguyenLieuAdapter.getCount();
         String buoclam = edtBuocLam.getText().toString();
-        if (!tenmon.matches("") && loai != null && !mota.matches("") && nlSize != 0 && !buoclam.matches("")) {
+        String link = edtLink.getText().toString();
+        if (!tenmon.matches("") && loai != null && !mota.matches("") && nlSize != 0 && !buoclam.matches("") && !link.matches("")) {
             return true;
         } else {
             Toast.makeText(this, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
@@ -374,6 +379,7 @@ public class SuamonanActivity extends AppCompatActivity {
         monan = (MonAn) intent.getSerializableExtra("monan");
 
         edtTenMonAn = (EditText) findViewById(R.id.edtTenMonAn);
+        edtLink = (EditText) findViewById(R.id.edtLinkYoutube);
         spnLoai = (Spinner) findViewById(R.id.spnLoai);
         edtMoTa = (EditText) findViewById(R.id.edtMoTa);
         txtAnh = (TextView) findViewById(R.id.txtAnh);
@@ -401,6 +407,7 @@ public class SuamonanActivity extends AppCompatActivity {
     private void initValueMonAn() {
         edtTenMonAn.setText(monan.getTenmon());
         edtMoTa.setText(monan.getMota());
+        edtLink.setText(monan.getLink());
         spnLoai.setSelection(getPositionMonAn());
         getCongThucCTCongThucByMaCT(monan.getMact());
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <item android:title="Sửa"
+        android:id="@+id/mnuSua" />
+    <item android:title="Xóa"
+        android:id="@+id/mnuXoa" />
+    <item android:title="Xuất PDF"
+        android:id="@+id/mnuPdf" />
+</menu>
