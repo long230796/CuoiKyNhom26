@@ -2,16 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center">
+    android:gravity="center_horizontal">
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="60dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:padding="10dp"
+        android:background="@drawable/textview_border_thin_bggray">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Đăng nhập"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="24dp"
+            android:textColor="@color/colorPrimary"/>
         <EditText
             android:id="@+id/edtUsername"
             android:layout_width="match_parent"

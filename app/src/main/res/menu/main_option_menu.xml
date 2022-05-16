@@ -8,18 +8,7 @@
         android:icon="@drawable/ic_search_black_24dp"
         android:title="Search"
         app:showAsAction="always" />
-
-    <item
-        android:icon="@drawable/ic_menu_black_24dp"
-        android:orderInCategory="100"
-        android:title="Option Menu"
-        app:showAsAction="always" >
-        <menu>
-            <item android:title="Test notification"
-                android:id="@+id/mnuNotification" />
-            <item android:title="Test send mail"
-                android:id="@+id/mnuSendMail" />
-        </menu>
-    </item>
+    <item android:title="Phần mềm"
+        android:id="@+id/mnuChiTiet2"/>
 
 </menu>

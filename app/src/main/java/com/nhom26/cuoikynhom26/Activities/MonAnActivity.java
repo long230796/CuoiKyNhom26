@@ -3,15 +3,12 @@ package com.nhom26.cuoikynhom26.Activities;
 import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Base64;
@@ -125,32 +122,6 @@ public class MonAnActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.mnuNotification:
-                // event notificate clicked
-                Intent intent = new Intent(this, NguyenLieuActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(MonAnActivity.this)
-                        .setSmallIcon(R.drawable.ic_rice_bowl)
-                        .setContentTitle("My notification")
-                        .setContentText("Much longer text that cannot fit one line...")
-                        .setContentIntent(pendingIntent)
-                        .setAutoCancel(true);
-
-                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MonAnActivity.this);
-                managerCompat.notify(1, builder.build());
-                break;
-            case R.id.mnuSendMail:
-                Intent mailIntent = new Intent(this, SendMailActivity.class);
-                startActivity(mailIntent);
-                break;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

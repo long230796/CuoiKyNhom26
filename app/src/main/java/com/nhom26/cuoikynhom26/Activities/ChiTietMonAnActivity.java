@@ -30,10 +30,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nhom26.cuoikynhom26.Activities.account.UserControl;
 import com.nhom26.cuoikynhom26.R;
 import com.nhom26.cuoikynhom26.adapter.BinhLuanAdapter;
 import com.nhom26.cuoikynhom26.model.BinhLuan;
 import com.nhom26.cuoikynhom26.model.MonAn;
+import com.nhom26.cuoikynhom26.model.User;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -55,6 +57,9 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
 
     MonAn selectedMonAn;
     BinhLuan selectedBinhLuan;
+
+    UserControl usrctl;
+    User lastUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +99,7 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
 
             ContentValues values = new ContentValues();
             values.put("MAMON", selectedMonAn.getMamon());
-            values.put("PHONE", "0329138040");
+            values.put("PHONE", lastUser.getTen());
             values.put("NOIDUNG", edtBinhLuan.getText().toString());
             values.put("THOIGIAN", dateInString);
 
@@ -127,6 +132,8 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
     }
 
     private void addControls() {
+
+        lastUser=usrctl.getLastUser(getApplicationContext());
 
         lvComment = (ListView) findViewById(R.id.lvReviewer);
         btnGui = (Button) findViewById(R.id.btnGui);
@@ -514,7 +521,7 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
     }
 
     public void AddToUaThich(View view) {
-        ThemUaThich(selectedMonAn.getMamon(),"0123456789");
+        ThemUaThich(selectedMonAn.getMamon(),lastUser.getPhone());
         String a = "";
         String b = "";
         AdminHomeActivity.database = openOrCreateDatabase(AdminHomeActivity.DATABASE_NAME, MODE_PRIVATE, null);
@@ -535,7 +542,7 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
         values.put("PHONE", phone);
         long kq = AdminHomeActivity.database.insert("CTUATHICH", null, values);
         if (kq > 0) {
-            Toast.makeText(this, "Thêm loại thành công", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Thêm vào món ưa thích", Toast.LENGTH_SHORT).show();
         }
         else{
             Toast.makeText(this, "Món ăn đã có sẵn trong danh mục ưa thích!!!", Toast.LENGTH_SHORT).show();

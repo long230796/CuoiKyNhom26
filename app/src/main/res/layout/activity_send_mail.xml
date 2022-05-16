@@ -9,28 +9,51 @@
     android:padding="16dp"
     tools:context="com.nhom26.cuoikynhom26.Activities.SendMailActivity">
 
-    <EditText
-        android:id="@+id/email"
+    <TextView
+        android:text="Email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email" />
+        android:id="@+id/textView16" />
+
+    <TextView
+        android:text="long230796@gmail.com"
+        android:layout_width="match_parent"
+        android:id="@+id/textView14"
+        android:layout_height="40dp"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:text="Tiêu đề"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView18" />
 
     <EditText
         android:id="@+id/subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Subjects" />
+        android:hint="Subjects"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:text="Tin nhắn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView19" />
 
     <EditText
         android:id="@+id/message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Message" />
+        android:hint="Message"
+        android:layout_marginBottom="10dp" />
 
     <Button
         android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Send" />
+        android:text="Gửi" />
 
 </LinearLayout>

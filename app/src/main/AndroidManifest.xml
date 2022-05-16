@@ -6,10 +6,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
-        android:hardwareAccelerated="true"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -23,14 +22,11 @@
             android:label="Nguyên liệu" />
         <activity
             android:name=".Activities.AdminHomeActivity"
-            android:label="Trang Chủ Admin">
-
-        </activity>
+            android:label="Trang Chủ Admin"></activity>
         <activity
             android:name=".Activities.LoaiActivity"
             android:label="Loại món ăn" />
         <activity android:name=".Activities.MonAnActivity" />
-
         <activity
             android:name=".Activities.ThemmonanActivity"
             android:label="Thêm món ăn" />
@@ -38,18 +34,17 @@
         <activity android:name=".Activities.SendMailActivity" />
         <activity android:name=".Activities.ChiTietMonAnActivity" />
         <activity android:name=".Activities.DanhSachUaThich" />
-        <activity android:name=".Activities.YoutubeActivity"></activity>
-
+        <activity android:name=".Activities.YoutubeActivity" />
         <activity android:name=".Activities.account.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.account.RegisterActivity"></activity>
-        <activity android:name=".Activities.account.ResetPassActivity"></activity>
-
-
+        <activity android:name=".Activities.account.RegisterActivity" />
+        <activity android:name=".Activities.account.ResetPassActivity" />
+        <activity android:name=".Activities.DanhSachMonTheoLoaiActivity"></activity>
     </application>
 
 </manifest>

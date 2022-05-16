@@ -18,7 +18,7 @@
         android:layout_alignParentStart="true">
 
         <TextView
-            android:text="DANH SÁCH MÓN YÊU THÍCH"
+            android:text="Món ưa thích"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView"

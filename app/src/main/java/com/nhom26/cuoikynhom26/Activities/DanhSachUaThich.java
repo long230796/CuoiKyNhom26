@@ -22,7 +22,7 @@ public class DanhSachUaThich extends AppCompatActivity {
     ArrayList<MonAn> arrrayListMonAn;
     MonAnAdapter monAnAdapter;
     MonAn selectedMonAn;
-    String phonenumber = "0123456789";
+    String phonenumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +104,7 @@ public class DanhSachUaThich extends AppCompatActivity {
         monAnAdapter = new MonAnAdapter(getApplicationContext(),R.layout.item_monan,arrrayListMonAn);
         lvDSMonAn.setAdapter(monAnAdapter);
         Intent intent = getIntent();
-//        phonenumber = (String) intent.getSerializableExtra("phonenumber");
+        phonenumber = (String) intent.getSerializableExtra("phonenumber");
     }
 
 

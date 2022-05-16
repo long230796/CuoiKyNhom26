@@ -12,7 +12,9 @@ import com.nhom26.cuoikynhom26.R;
 
 public class SendMailActivity extends AppCompatActivity {
 
-    private EditText email, subject, message;
+    String email = "long230796@gmail.com";
+
+    private EditText subject, message;
     private Button button;
 
     @Override
@@ -20,7 +22,6 @@ public class SendMailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_mail);
 
-        email = (EditText) findViewById(R.id.email);
         subject = (EditText) findViewById(R.id.subject);
         message = (EditText) findViewById(R.id.message);
         button = (Button) findViewById(R.id.btn);
@@ -34,7 +35,7 @@ public class SendMailActivity extends AppCompatActivity {
     }
 
     private void senEmail() {
-        String mEmail = email.getText().toString();
+        String mEmail = email;
         String mSubject = subject.getText().toString();
         String mMessage = message.getText().toString();
 

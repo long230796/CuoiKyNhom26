@@ -109,29 +109,8 @@
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/txtLogout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginStart="23dp"
-                        android:text="Đăng xuất"
-                        android:clickable="true"/>
 
-                </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/tab2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:text="RadioButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/radioButton" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -141,23 +120,107 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="10dp">
 
-                        <CheckBox
-                            android:text="CheckBox"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textStyle="normal|bold"
+                            android:layout_marginBottom="15dp"
+                            android:text="Thông tin người dùng"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_width="250dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/textview_border_thin_bggray">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:gravity="center"
+                            android:layout_height="100dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:srcCompat="@drawable/ic_user_svgrepo_com"
+                                android:id="@+id/imageView5"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/checkBox" />
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            >
 
-                        <Button
-                            android:text="XEM DANH MỤC ƯA THÍCH"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/btn_uathich"
-                            android:onClick="onShowUaThich"
-                            />
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:text="Tên người dùng"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textView17"
+                                    android:textSize="12dp"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:id="@+id/txtTenUser"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="5dp"
+                                android:padding="5dp">
+                                <TextView
+                                    android:text="Số điện thoại"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12dp"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:id="@+id/txtPhone"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <Button
+                                    android:text="Danh sách ưa thích"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/btn_uathich"
+                                    android:layout_weight="1"
+                                    android:textSize="12dp"/>
+
+                                <Button
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Đăng xuất"
+                                    android:layout_weight="1"
+                                    android:textSize="12dp"
+                                    android:id="@+id/txtLogout"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
