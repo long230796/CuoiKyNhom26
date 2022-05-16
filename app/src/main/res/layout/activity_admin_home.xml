@@ -108,6 +108,17 @@
                             android:textColor="@android:color/background_dark" />
 
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtLogout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="23dp"
+                        android:text="Đăng xuất"
+                        android:clickable="true"/>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -159,4 +170,6 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </TabHost>
+
+
 </LinearLayout>

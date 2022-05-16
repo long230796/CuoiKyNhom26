@@ -373,7 +373,6 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
         currentHeight += 20;
         String canhlam = getMoTaCachLam(selectedMonAn.getMact()).replace("\n", "").replace("\r", "");
         String[] array2 = canhlam.split("(?<=\\G.{50})");
-        Toast.makeText(this, String.valueOf(array2.length), Toast.LENGTH_SHORT).show();
         while (array2.length > 1) {
             currentHeight += 15;
             title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));

@@ -7,6 +7,4 @@
         android:id="@+id/mnuSua" />
     <item android:title="Xóa"
         android:id="@+id/mnuXoa" />
-    <item android:title="Xuất PDF"
-        android:id="@+id/mnuPdf" />
 </menu>
