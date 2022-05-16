@@ -12,9 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nhom26.cuoikynhom26.R;
-import com.nhom26.cuoikynhom26.model.Loai;
 import com.nhom26.cuoikynhom26.model.LoaiSearch;
-import com.nhom26.cuoikynhom26.model.MonAn;
 
 /**
  * Created by apoll on 5/9/2022.
@@ -40,7 +38,8 @@ public class LoaiAdapterHome extends ArrayAdapter<LoaiSearch>{
         ImageView imgAnh = (ImageView) customView.findViewById(R.id.imgAnh_home);
 
         txtTenLoai.setText(loai.getTen());
-        imgAnh.setImageBitmap(StringToBitMap(loai.getHinhAnh()));
+        Bitmap hinh = StringToBitMap(loai.getHinhAnh());
+        imgAnh.setImageBitmap(hinh);
 
         return customView;
     }
@@ -55,6 +54,7 @@ public class LoaiAdapterHome extends ArrayAdapter<LoaiSearch>{
             return null;
         }
     }
+
 
 
 }
