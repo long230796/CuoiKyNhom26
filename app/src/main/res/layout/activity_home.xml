@@ -14,7 +14,9 @@
     <TabHost
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/tabHostHome">
+        android:id="@+id/tabHostHome"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,12 +26,12 @@
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
-                android:layout_height="419dp">
+                android:layout_height="560dp">
 
                 <LinearLayout
                     android:id="@+id/tab1Home"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="550dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -81,12 +83,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginTop="10dp">
+                        >
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="20sp"
+                            android:textSize="24sp"
                             android:textStyle="normal|bold"
                             android:layout_marginBottom="15dp"
                             android:text="Thông tin người dùng"/>
@@ -95,7 +97,7 @@
                     <LinearLayout
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_width="250dp"
+                        android:layout_width="300dp"
                         android:layout_gravity="center"
                         android:background="@drawable/textview_border_thin_bggray">
                         <LinearLayout
@@ -128,7 +130,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/textView17"
-                                    android:textSize="12dp"/>
+                                    android:textSize="14dp"/>
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -147,7 +149,7 @@
                                     android:text="Số điện thoại"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textSize="12dp"/>
+                                    android:textSize="14dp"/>
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -167,14 +169,14 @@
                                     android:layout_height="wrap_content"
                                     android:id="@+id/btn_uathich"
                                     android:layout_weight="1"
-                                    android:textSize="12dp"/>
+                                    android:textSize="14dp"/>
 
                                 <Button
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Đăng xuất"
                                     android:layout_weight="1"
-                                    android:textSize="12dp"
+                                    android:textSize="14dp"
                                     android:id="@+id/txtLogout"/>
                             </LinearLayout>
 

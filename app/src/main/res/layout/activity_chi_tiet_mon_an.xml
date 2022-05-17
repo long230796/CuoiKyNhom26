@@ -27,8 +27,8 @@
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="106dp"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="150dp">
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -69,7 +69,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txt_motamonan"/>
+                        android:id="@+id/txt_motamonan"
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -89,7 +90,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/txt_dsnguyenlieu" />
+                        android:id="@+id/txt_dsnguyenlieu"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -110,7 +112,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txt_motabuoclam" />
+                        android:id="@+id/txt_motabuoclam"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
