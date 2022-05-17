@@ -26,6 +26,7 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
         youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
         Intent intent = getIntent();
         String link = (String) intent.getSerializableExtra("id");
+        System.out.println(link);
         parts = link.split("=");
     }
 

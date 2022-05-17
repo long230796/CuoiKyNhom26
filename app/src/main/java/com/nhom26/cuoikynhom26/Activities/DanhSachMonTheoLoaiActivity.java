@@ -66,8 +66,10 @@ public class DanhSachMonTheoLoaiActivity extends AppCompatActivity {
             String tenmon = cursor.getString(3);
             String mota = cursor.getString(4);
             String hinhanh = cursor.getString(5);
+            String link = cursor.getString(6);
 
-            MonAn monan = new MonAn(mamon, maloai, mact, tenmon, mota, hinhanh);
+
+            MonAn monan = new MonAn(mamon, maloai, mact, tenmon, mota, hinhanh, link);
             monAnAdapterH.add(monan);
         }
         cursor.close();

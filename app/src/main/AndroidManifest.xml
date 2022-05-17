@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MainActivity" />
+        <activity android:name=".Activities.MainActivity"  />
         <activity
             android:name=".Activities.HomeActivity"
             android:label=" Home" />
@@ -26,25 +26,25 @@
         <activity
             android:name=".Activities.LoaiActivity"
             android:label="Loại món ăn" />
-        <activity android:name=".Activities.MonAnActivity" />
+        <activity android:label="Món ăn" android:name=".Activities.MonAnActivity" />
         <activity
             android:name=".Activities.ThemmonanActivity"
             android:label="Thêm món ăn" />
-        <activity android:name=".Activities.SuamonanActivity" />
-        <activity android:name=".Activities.SendMailActivity" />
-        <activity android:name=".Activities.ChiTietMonAnActivity" />
-        <activity android:name=".Activities.DanhSachUaThich" />
-        <activity android:name=".Activities.YoutubeActivity" />
-        <activity android:name=".Activities.account.LoginActivity">
+        <activity android:label="Sửa món ăn" android:name=".Activities.SuamonanActivity" />
+        <activity android:label="Gửi Email" android:name=".Activities.SendMailActivity" />
+        <activity android:label="Chi tiết món ăn" android:name=".Activities.ChiTietMonAnActivity" />
+        <activity android:label="Danh sách ưa thích" android:name=".Activities.DanhSachUaThich" />
+        <activity android:label="Youtube" android:name=".Activities.YoutubeActivity" />
+        <activity android:label="Login" android:name=".Activities.account.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.account.RegisterActivity" />
-        <activity android:name=".Activities.account.ResetPassActivity" />
-        <activity android:name=".Activities.DanhSachMonTheoLoaiActivity"></activity>
+        <activity android:label="Đăng ký" android:name=".Activities.account.RegisterActivity" />
+        <activity android:label="Đổi mật khẩu" android:name=".Activities.account.ResetPassActivity" />
+        <activity android:label="Thể loại" android:name=".Activities.DanhSachMonTheoLoaiActivity"></activity>
     </application>
 
 </manifest>
