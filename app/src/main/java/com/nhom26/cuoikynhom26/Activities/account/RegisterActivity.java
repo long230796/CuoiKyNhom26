@@ -55,17 +55,16 @@ public class RegisterActivity extends AppCompatActivity {
         mCallBacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-                //Log.d("JEJE", "onVerificationCompleted:" + phoneAuthCredential);
+                Log.d("JEJE", "onVerificationCompleted:" + phoneAuthCredential);
                 String code = phoneAuthCredential.getSmsCode();
-                //Log.d("JEJE", "SMS code:" +code);
+                Log.d("JEJE", "SMS code:" +code);
 
                 //luuUserVaoDB(phonenum, ten, pass);
-
             }
 
             @Override
             public void onVerificationFailed(FirebaseException e) {
-
+                Log.d("JEJE", e.toString()) ;
                 if (e instanceof FirebaseAuthInvalidCredentialsException) {
                     Toast.makeText(RegisterActivity.this, "Mã OTP không hợp lệ!", Toast.LENGTH_SHORT).show();
                 } else if (e instanceof FirebaseTooManyRequestsException) {
@@ -79,6 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(RegisterActivity.this, "Mã OTP đã được gửi", Toast.LENGTH_SHORT).show();
                 mVerificationId = s;
                 mResendToken = forceResendingToken;
+                Log.d("JEJE", s) ;
             }
         };
     }
@@ -187,13 +187,14 @@ public class RegisterActivity extends AppCompatActivity {
         verifyPhone(phonenum,mCallBacks);
         if (code != null) {
             edtOTP.setText(code);
+
         }
         btnXacThuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String otpcode = edtOTP.getText().toString();
                 if (otpcode.isEmpty()|otpcode.length()!=6){
-                    Toast.makeText(RegisterActivity.this, otpcode, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Vui lòng nhập mã OTP!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     verifyCode(otpcode);
